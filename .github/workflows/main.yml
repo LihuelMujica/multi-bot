@@ -51,4 +51,4 @@ jobs:
           export MONGODB_USERNAME=${{ secrets.MONGODB_USERNAME }} &&
           export MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }} &&
           ls &&
-          java -jar discordbot-1.0.jar
+          nohup java -jar discordbot-1.0.jar > log.txt 2>&1 &
