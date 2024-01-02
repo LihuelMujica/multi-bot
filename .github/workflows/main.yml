@@ -18,7 +18,7 @@ jobs:
         java-version: '17'
 
     - name: Generar archivo JAR
-      run: mvn clean package -DskipTests
+      run: mvn clean install -DskipTests
       env:
         C3PO_DISCORD_SECRET: ${{ secrets.C3PO_DISCORD_SECRET }}
         INVOCADOR_DISCORD_SECRET: ${{ secrets.INVOCADOR_DISCORD_SECRET }}
