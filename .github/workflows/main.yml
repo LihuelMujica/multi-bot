@@ -52,5 +52,7 @@ jobs:
           export MONGODB_USERNAME=${{ secrets.MONGODB_USERNAME }} &&
           export MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }} &&
           ls &&
-          nohup java -jar discordbot-1.0.jar  > ./output.log 2>&1 &
-          echo "Deployment completed successfully."
+          sudo systemctl stop discordbot.service &&
+          echo "Init discordbot.service" &&
+          sudo systemctl start discordbot.service
+          ls -al
