@@ -43,7 +43,7 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          cd /usr/lib/jvm/java-17-amazon-corretto/bin &&
+          cd /home/ec2-user/deploy/ &&
           export C3PO_DISCORD_SECRET=${{ secrets.C3PO_DISCORD_SECRET }} &&
           export INVOCADOR_DISCORD_SECRET=${{ secrets.INVOCADOR_DISCORD_SECRET }} &&
           export INVISIBLE_FRIEND_DISCORD_SECRET=${{ secrets.INVISIBLE_FRIEND_DISCORD_SECRET }} &&
@@ -51,4 +51,4 @@ jobs:
           export MONGODB_USERNAME=${{ secrets.MONGODB_USERNAME }} &&
           export MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }} &&
           ls &&
-          java -jar /home/ec2-user/deploy/bot.jar
+          java -jar bot.jar
