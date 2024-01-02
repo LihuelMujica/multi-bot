@@ -8,7 +8,9 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.aop.framework.AopProxyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -21,12 +23,18 @@ public class CommandManager extends ListenerAdapter {
 
     private final Map<String, Command> commands = new HashMap<>();
     private final JDAFactory jdaFactory;
+    private final boolean refreshCommands;
 
     @Autowired
-    public CommandManager(List<Command> commands, JDAFactory jdaFactory) {
+    public CommandManager(List<Command> commands, JDAFactory jdaFactory, @Value("${discord.refresh-commands}") boolean refreshCommands) {
+        this.refreshCommands = refreshCommands;
         commands.forEach(command -> this.commands.put(command.getName(), command));
         this.jdaFactory = jdaFactory;
         log.info("Registering CommandManager as listener...");
+        if (refreshCommands) {
+            log.info("Removing all commands...");
+            jdaFactory.getJdaMap().forEach((botName, jda) -> removeAllCommands(jda));
+        }
         registerCommands();
     }
 
@@ -34,7 +42,7 @@ public class CommandManager extends ListenerAdapter {
         log.info("Registering commands...");
         commands.forEach(
                 (name, command) -> {
-                    SlashCommand slashCommand = command.getClass().getAnnotation(SlashCommand.class);
+                    SlashCommand slashCommand = AopProxyUtils.ultimateTargetClass(command).getAnnotation(SlashCommand.class);
                     if (slashCommand == null) {
                         log.error("Command {} does not have SlashCommand annotation", name);
                         throw new RuntimeException("Command " + name + " does not have SlashCommand annotation");
@@ -67,6 +75,14 @@ public class CommandManager extends ListenerAdapter {
             return;
         }
         jda.upsertCommand(command.getName(), command.getDescription()).queue();
+    }
+
+    private void removeAllCommands(JDA jda) {
+        jda.retrieveCommands().queue(
+                commands -> commands.forEach(
+                        command -> jda.deleteCommandById(command.getId()).queue()
+                )
+        );
     }
 
     @Override

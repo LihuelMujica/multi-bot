@@ -1,10 +1,10 @@
 # Discord key
 discord:
-  token: ${DISCORD_TOKEN}
+  refresh-commands: 'true'
   bots:
-    bot1:
-      discord-id: "the id of bot1"
-      discord-secret: "discord secret of bot2"
-    bot2:
-      discord-id: "the id of bot2"
-      discord-secret: "discord secret of bot2"
+    c-3po:
+      discord-id: 1172743069523791902
+      discord-secret: MTE3Mjc0MzA2OTUyMzc5MTkwMg.GGgyTt.hwkD5V3cQAhE3BQcrRk9Cm78j4RJ6C2q61VSew
+    invocador:
+      discord-id: 1191517545900023880
+      discord-secret: MTE5MTUxNzU0NTkwMDAyMzg4MA.G2SAMF.ubPV9Jf7FAukBzx-slIj-RidzQ96ZmsVGX1TSs

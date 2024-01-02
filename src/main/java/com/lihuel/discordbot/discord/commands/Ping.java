@@ -3,11 +3,10 @@ package com.lihuel.discordbot.discord.commands;
 import com.lihuel.discordbot.annotations.SlashCommand;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@SlashCommand({"bot1", "bot2"})
+@SlashCommand({"c-3po", "invocador"})
 public class Ping implements Command {
     @Override
     public String getName() {
