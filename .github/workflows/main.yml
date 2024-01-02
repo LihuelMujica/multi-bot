@@ -1,0 +1,58 @@
+name: Deploy application
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Verificar código
+      uses: actions/checkout@v2
+
+    - uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu' # See 'Supported distributions' for available options
+        java-version: '17'
+
+    - name: Generar archivo JAR
+      run: mvn clean install -DskipTests
+      env:
+        C3PO_DISCORD_SECRET: ${{ secrets.C3PO_DISCORD_SECRET }}
+        INVOCADOR_DISCORD_SECRET: ${{ secrets.INVOCADOR_DISCORD_SECRET }}
+        INVISIBLE_FRIEND_DISCORD_SECRET: ${{ secrets.INVISIBLE_FRIEND_DISCORD_SECRET }}
+        MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        MONGODB_USERNAME: $ {{ secrets.MONGODB_USERNAME }}
+        MONGODB_PASSWORD: $ {{ secrets.MONGODB_PASSWORD }}
+
+    - name: Copiar archivo JAR a instancia EC2 2
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        source: "./target/discordbot-1.0.jar"
+        target: "/home/ec2-user/deploy"
+          
+    - name: Run Backend
+      uses: appleboy/ssh-action@v1.0.2
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        timeout: 10s
+        script: |
+          cd /home/ec2-user/deploy/target &&
+          export C3PO_DISCORD_SECRET=${{ secrets.C3PO_DISCORD_SECRET }} &&
+          export INVOCADOR_DISCORD_SECRET=${{ secrets.INVOCADOR_DISCORD_SECRET }} &&
+          export INVISIBLE_FRIEND_DISCORD_SECRET=${{ secrets.INVISIBLE_FRIEND_DISCORD_SECRET }} &&
+          export MONGODB_URI=${{ secrets.MONGODB_URI }} &&
+          export MONGODB_USERNAME=${{ secrets.MONGODB_USERNAME }} &&
+          export MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }} &&
+          ls &&
+          sudo systemctl stop discordbot.service &&
+          echo "Init discordbot.service" &&
+          sudo systemctl start discordbot.service
+          ls -al
