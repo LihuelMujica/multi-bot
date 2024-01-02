@@ -4,7 +4,7 @@ discord:
   bots:
     c-3po:
       discord-id: 1172743069523791902
-      discord-secret: MTE3Mjc0MzA2OTUyMzc5MTkwMg.GGgyTt.hwkD5V3cQAhE3BQcrRk9Cm78j4RJ6C2q61VSew
+      discord-secret: ${C3PO_DISCORD_SECRET}
     invocador:
       discord-id: 1191517545900023880
-      discord-secret: MTE5MTUxNzU0NTkwMDAyMzg4MA.G2SAMF.ubPV9Jf7FAukBzx-slIj-RidzQ96ZmsVGX1TSs
+      discord-secret: ${INVOCADOR_DISCORD_SECRET}
