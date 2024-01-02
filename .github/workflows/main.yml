@@ -50,4 +50,4 @@ jobs:
           export MONGODB_URI=${{ secrets.MONGODB_URI }} &&
           export MONGODB_USERNAME=${{ secrets.MONGODB_USERNAME }} &&
           export MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }} &&
-          java -jar bot.jar
+          java -jar /home/ec2-user/deploy/bot.jar
