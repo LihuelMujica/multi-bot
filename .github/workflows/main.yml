@@ -43,7 +43,7 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          cd /home/ec2-user/deploy/ &&
+          cd /home/ec2-user/deploy/target &&
           export C3PO_DISCORD_SECRET=${{ secrets.C3PO_DISCORD_SECRET }} &&
           export INVOCADOR_DISCORD_SECRET=${{ secrets.INVOCADOR_DISCORD_SECRET }} &&
           export INVISIBLE_FRIEND_DISCORD_SECRET=${{ secrets.INVISIBLE_FRIEND_DISCORD_SECRET }} &&
