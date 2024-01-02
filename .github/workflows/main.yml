@@ -18,7 +18,7 @@ jobs:
         java-version: '17'
 
     - name: Generar archivo JAR
-      run: mvn clean install -DskipTests
+      run: mvn clean package -DskipTests
       env:
         C3PO_DISCORD_SECRET: ${{ secrets.C3PO_DISCORD_SECRET }}
         INVOCADOR_DISCORD_SECRET: ${{ secrets.INVOCADOR_DISCORD_SECRET }}
@@ -49,16 +49,14 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        timeout: 10s
-        envs: C3PO_DISCORD_SECRET,INVOCADOR_DISCORD_SECRET,INVISIBLE_FRIEND_DISCORD_SECRET,MONGODB_URI,MONGODB_USERNAME,MONGODB_PASSWORD
         script: |
           cd /home/ec2-user/deploy/target &&
-          export C3PO_DISCORD_SECRET=$C3PO_DISCORD_SECRET &&
-          export INVOCADOR_DISCORD_SECRET=$INVOCADOR_DISCORD_SECRET &&
-          export INVISIBLE_FRIEND_DISCORD_SECRET=$INVISIBLE_FRIEND_DISCORD_SECRET &&
-          export MONGODB_URI=$MONGODB_URI &&
-          export MONGODB_USERNAME=$MONGODB_USERNAME &&
-          export MONGODB_PASSWORD=$MONGODB_PASSWORD &&
+          export C3PO_DISCORD_SECRET=${{ secrets.C3PO_DISCORD_SECRET }} &&
+          export INVOCADOR_DISCORD_SECRET=${{ secrets.INVOCADOR_DISCORD_SECRET }} &&
+          export INVISIBLE_FRIEND_DISCORD_SECRET=${{ secrets.INVISIBLE_FRIEND_DISCORD_SECRET }} &&
+          export MONGODB_URI=${{ secrets.MONGODB_URI }} &&
+          export MONGODB_USERNAME=${{ secrets.MONGODB_USERNAME }} &&
+          export MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }} &&
           ls &&
           sudo systemctl stop discordbot.service &&
           echo "Init discordbot.service" &&
