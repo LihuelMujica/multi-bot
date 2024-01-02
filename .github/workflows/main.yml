@@ -33,8 +33,8 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        source: "./target/*.jar"
-        target: "/home/ec2-user/deploy/bot.jar"
+        source: "./target/discordbot-1.0.jar"
+        target: "/home/ec2-user/deploy"
           
     - name: Run Backend
       uses: appleboy/ssh-action@v1.0.0
@@ -51,4 +51,4 @@ jobs:
           export MONGODB_USERNAME=${{ secrets.MONGODB_USERNAME }} &&
           export MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }} &&
           ls &&
-          java -jar bot.jar
+          java -jar discordbot-1.0.jar
