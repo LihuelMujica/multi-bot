@@ -24,8 +24,8 @@ jobs:
         INVOCADOR_DISCORD_SECRET: ${{ secrets.INVOCADOR_DISCORD_SECRET }}
         INVISIBLE_FRIEND_DISCORD_SECRET: ${{ secrets.INVISIBLE_FRIEND_DISCORD_SECRET }}
         MONGODB_URI: ${{ secrets.MONGODB_URI }}
-        MONGODB_USERNAME: $$ {{ secrets.MONGODB_USERNAME }}
-        MONGODB_PASSWORD: $$ {{ secrets.MONGODB_PASSWORD }}
+        MONGODB_USERNAME: $ {{ secrets.MONGODB_USERNAME }}
+        MONGODB_PASSWORD: $ {{ secrets.MONGODB_PASSWORD }}
 
     - name: Copiar archivo JAR a instancia EC2 2
       uses: appleboy/scp-action@master
