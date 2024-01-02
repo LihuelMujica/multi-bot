@@ -37,7 +37,6 @@ jobs:
         target: "/home/ec2-user/deploy"
           
     - name: Run Backend
-      uses: appleboy/ssh-action@v1.0.2
       env:
         C3PO_DISCORD_SECRET: ${{ secrets.C3PO_DISCORD_SECRET }}
         INVOCADOR_DISCORD_SECRET: ${{ secrets.INVOCADOR_DISCORD_SECRET }}
@@ -45,13 +44,8 @@ jobs:
         MONGODB_URI: ${{ secrets.MONGODB_URI }}
         MONGODB_USERNAME: $ {{ secrets.MONGODB_USERNAME }}
         MONGODB_PASSWORD: $ {{ secrets.MONGODB_PASSWORD }}
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        timeout: 10s
-        envs: C3PO_DISCORD_SECRET,INVOCADOR_DISCORD_SECRET,INVISIBLE_FRIEND_DISCORD_SECRET,MONGODB_URI,MONGODB_USERNAME,MONGODB_PASSWORD
-        script: |
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ssh_key.pem ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
           cd /home/ec2-user/deploy/target &&
           export C3PO_DISCORD_SECRET=$C3PO_DISCORD_SECRET &&
           export INVOCADOR_DISCORD_SECRET=$INVOCADOR_DISCORD_SECRET &&
@@ -64,3 +58,5 @@ jobs:
           echo "Init discordbot.service" &&
           sudo systemctl start discordbot.service
           ls -al
+          EOF
+
