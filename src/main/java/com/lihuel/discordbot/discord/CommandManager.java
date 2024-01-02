@@ -68,6 +68,9 @@ public class CommandManager extends ListenerAdapter {
     }
 
     private void registerCommand(Command command, JDA jda) {
+        if (refreshCommands) {
+            guildCommandRegister(command, jda);
+        }
         if (command.getOptions() != null) {
             jda.upsertCommand(command.getName(), command.getDescription())
                     .addOptions(command.getOptions())
@@ -77,12 +80,23 @@ public class CommandManager extends ListenerAdapter {
         jda.upsertCommand(command.getName(), command.getDescription()).queue();
     }
 
+    private void guildCommandRegister(Command command, JDA jda) {
+        if (command.getOptions() != null) {
+            jda.getGuilds().forEach(guild -> {
+                guild.upsertCommand(command.getName(), command.getDescription())
+                        .addOptions(command.getOptions())
+                        .complete();
+            });
+        }
+        jda.getGuilds().forEach(guild -> {
+            guild.upsertCommand(command.getName(), command.getDescription()).complete();
+        });
+    }
+
     private void removeAllCommands(JDA jda) {
-        jda.retrieveCommands().queue(
-                commands -> commands.forEach(
-                        command -> jda.deleteCommandById(command.getId()).queue()
-                )
-        );
+        jda.retrieveCommands().complete().forEach(command -> {
+            jda.deleteCommandById(command.getId()).complete();
+        });
     }
 
     @Override

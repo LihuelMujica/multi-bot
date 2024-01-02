@@ -15,5 +15,5 @@ public interface Command {
     List<OptionData> getOptions();
 
     @Async("asyncExecutor")
-    void execute(SlashCommandInteractionEvent event);
+    void execute(SlashCommandInteractionEvent event) throws Exception;
 }

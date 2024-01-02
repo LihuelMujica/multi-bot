@@ -55,6 +55,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Spring Data dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+
         <!-- Discord dependencies -->
         <dependency>
             <groupId>net.dv8tion</groupId>

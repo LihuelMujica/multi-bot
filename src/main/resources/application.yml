@@ -1,6 +1,6 @@
 # Discord key
 discord:
-  refresh-commands: 'true'
+  refresh-commands: 'false'
   bots:
     c-3po:
       discord-id: 1172743069523791902
@@ -8,3 +8,14 @@ discord:
     invocador:
       discord-id: 1191517545900023880
       discord-secret: ${INVOCADOR_DISCORD_SECRET}
+    invisible-friend:
+        discord-id: 1191766264352346292
+        discord-secret: ${INVISIBLE_FRIEND_DISCORD_SECRET}
+
+# MongoDB
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URI}
+      username: ${MONGODB_USERNAME}
+      password: ${MONGODB_PASSWORD}
