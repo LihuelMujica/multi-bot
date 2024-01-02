@@ -42,6 +42,7 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
+        timeout: 10s
         script: |
           cd /home/ec2-user/deploy/target &&
           export C3PO_DISCORD_SECRET=${{ secrets.C3PO_DISCORD_SECRET }} &&
