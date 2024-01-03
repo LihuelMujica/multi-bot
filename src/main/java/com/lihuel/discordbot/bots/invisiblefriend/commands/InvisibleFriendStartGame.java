@@ -43,7 +43,7 @@ public class InvisibleFriendStartGame implements Command {
         try {
             event.getGuild().retrieveMemberById(userId).queue( member -> {
                 member.getUser().openPrivateChannel().queue( privateChannel -> {
-                    privateChannel.sendMessage("Tu amigo invisible es <@" + friendId + ">").queue();
+                    privateChannel.sendMessage("Eres el amigo invisible de <@" + friendId + ">").queue();
                 });
             });
         }
