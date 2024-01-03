@@ -16,7 +16,5 @@ discord:
 spring:
   data:
     mongodb:
-      uri: ${MONGODB_URI}
-      username: ${MONGODB_USERNAME}
-      password: ${MONGODB_PASSWORD}
+      uri: mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_CLUSTER}.mongodb.net/
       database: ${MONGODB_DATABASE}
