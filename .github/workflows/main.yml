@@ -57,6 +57,14 @@ jobs:
           export MONGODB_URI=${{ secrets.MONGODB_URI }} &&
           export MONGODB_USERNAME=${{ secrets.MONGODB_USERNAME }} &&
           export MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }} &&
+          echo '' > /home/ec2-user/env/discordbot.conf &&
+          echo "C3PO_DISCORD_SECRET=$C3PO_DISCORD_SECRET" >> /home/ec2-user/env/discordbot.conf && 
+          echo "INVOCADOR_DISCORD_SECRET=$INVOCADOR_DISCORD_SECRET" >> /home/ec2-user/env/discordbot.conf &&
+          echo "INVISIBLE_FRIEND_DISCORD_SECRET=$INVISIBLE_FRIEND_DISCORD_SECRET" >> /home/ec2-user/env/discordbot.conf &&
+          echo "MONGODB_URI=$MONGODB_URI" >> /home/ec2-user/env/discordbot.conf &&
+          echo "MONGODB_USERNAME=$MONGODB_USERNAME" >> /home/ec2-user/env/discordbot.conf &&
+          echo "MONGODB_PASSWORD=$MONGODB_PASSWORD" >> /home/ec2-user/env/discordbot.conf &&
+          echo "Stop discordbot.service" &&
           ls &&
           sudo systemctl stop discordbot.service &&
           echo "Init discordbot.service" &&
