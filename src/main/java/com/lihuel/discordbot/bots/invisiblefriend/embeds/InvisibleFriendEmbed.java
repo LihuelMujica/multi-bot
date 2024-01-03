@@ -69,7 +69,7 @@ public class InvisibleFriendEmbed {
         embedBuilder.setTitle(title);
         embedBuilder.setDescription(body);
         embedBuilder.setImage(imgURL);
-        embedBuilder.addField("", "P    ara <@" + receiverId + ">", true);
+        embedBuilder.addField("", "Para <@" + receiverId + ">", true);
         return embedBuilder.build();
     }
 }
