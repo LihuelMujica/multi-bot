@@ -19,3 +19,4 @@ spring:
       uri: ${MONGODB_URI}
       username: ${MONGODB_USERNAME}
       password: ${MONGODB_PASSWORD}
+      database: ${MONGODB_DATABASE}
