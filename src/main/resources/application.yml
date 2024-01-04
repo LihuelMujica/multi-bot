@@ -3,14 +3,20 @@ discord:
   refresh-commands: 'false'
   bots:
     c-3po:
-      discord-id: 1172743069523791902
+      ## ID FOR PRODUCTIONS: 1173488645970346064
+      ## ID FOR TESTS: 1192526545668018377
+      discord-id: 1173488645970346064
       discord-secret: ${C3PO_DISCORD_SECRET}
     invocador:
+      ## ID FOR PRODUCTIONS: 1191517545900023880
+      ## ID FOR TESTS: 1192526694268010556
       discord-id: 1191517545900023880
       discord-secret: ${INVOCADOR_DISCORD_SECRET}
     invisible-friend:
-        discord-id: 1192225344665686036
-        discord-secret: ${INVISIBLE_FRIEND_DISCORD_SECRET}
+      ## ID FOR PRODUCTIONS: 1192225344665686036
+      ## ID FOR TESTS: 1192527279864168488
+      discord-id: 1192225344665686036
+      discord-secret: ${INVISIBLE_FRIEND_DISCORD_SECRET}
 
 # MongoDB
 spring:
