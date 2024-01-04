@@ -4,6 +4,7 @@ import com.lihuel.discordbot.config.DiscordApplications;
 import lombok.Getter;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class JDAFactory {
     @Getter
     private final Map<String, JDA> jdaMap = new HashMap<>();
 
+    private final Map<String, String> botIdtoName = new HashMap<>();
+
 
     /**
      * Constructor of JdaFactory
@@ -41,6 +44,7 @@ public class JDAFactory {
         this.discordApplications = discordApplications;
         discordApplications.getBots().forEach((botName, discordApplication) -> {
             jdaMap.put(botName, jda(discordApplication.getDiscordSecret()));
+            botIdtoName.put(discordApplication.getDiscordId(), botName);
         }
         );
     }
@@ -49,6 +53,7 @@ public class JDAFactory {
     public JDA jda(String token) {
         try {
             JDA jda = JDABuilder.createDefault(token)
+                    .enableIntents(GatewayIntent.GUILD_MEMBERS)
                     .build();
             logger.info("JDA successfully created");
             return jda;
@@ -65,6 +70,15 @@ public class JDAFactory {
      */
     public JDA getJda(String botName) {
         return jdaMap.get(botName);
+    }
+
+    /**
+     * Returns the JDA instance for a bot by its id
+     * @param botId The id of the bot
+     * @return The JDA instance for the bot
+     */
+    public JDA getJdaById(String botId) {
+        return jdaMap.get(botIdtoName.get(botId));
     }
 
 }
