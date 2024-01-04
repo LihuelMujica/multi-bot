@@ -9,7 +9,7 @@ discord:
       discord-id: 1191517545900023880
       discord-secret: ${INVOCADOR_DISCORD_SECRET}
     invisible-friend:
-        discord-id: 1191766264352346292
+        discord-id: 1192225344665686036
         discord-secret: ${INVISIBLE_FRIEND_DISCORD_SECRET}
 
 # MongoDB
