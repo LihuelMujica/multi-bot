@@ -54,6 +54,7 @@ public class JDAFactory {
         try {
             JDA jda = JDABuilder.createDefault(token)
                     .enableIntents(GatewayIntent.GUILD_MEMBERS)
+                    .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                     .build();
             logger.info("JDA successfully created");
             return jda;
