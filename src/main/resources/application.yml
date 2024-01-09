@@ -18,10 +18,10 @@ discord:
       discord-id: 1192225344665686036
       discord-secret: ${INVISIBLE_FRIEND_DISCORD_SECRET}
     4fotos-1ing:
-      ## ID FOR PRODUCTIONS: not registered
+      ## ID FOR PRODUCTIONS: 1194099579013038152
       ## ID FOR TESTS: 1192526093601751112
-      discord-id: 1192526093601751112
-      discord-secret: ${4FOTOS_1ING_DISCORD_SECRET}
+      discord-id: 1194099579013038152
+      discord-secret: ${CUATRO_FOTOS_1ING_DISCORD_SECRET}
 
 # MongoDB
 spring:
