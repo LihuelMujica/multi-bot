@@ -26,7 +26,7 @@ public class InvisibleFriendAddAttach implements Command {
 
     @Override
     public String getDescription() {
-            return "Envía un regalo para tu amigo, solo él podrá verlo. Antes de enviar un regalo privado debes enviar un regalo público con /amigo-invisible-enviar-regalo";
+            return "Envía un regalo para tu amigo, soleo él podrá verlo. Antes debes enviar un regalo público";
     }
 
     @Override
