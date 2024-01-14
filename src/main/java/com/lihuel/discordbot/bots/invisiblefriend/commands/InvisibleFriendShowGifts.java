@@ -42,7 +42,7 @@ public class InvisibleFriendShowGifts implements Command {
                             return InvisibleFriendEmbed.giftEmbed(gift.getTitle(), gift.getBody(), gift.getImgURL(), gift.getReceiverId());
                         }).toList();
 
-        gifts.forEach(gift -> event.replyEmbeds(gift).queue());
+        gifts.forEach(gift -> event.getChannel().sendMessageEmbeds(gift).queue());
         invisibleFriendGameService.resetGifts(event.getGuild().getId());
     }
 }
