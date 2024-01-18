@@ -24,7 +24,7 @@ public class InvisibleFriendResetGifts implements Command {
 
     @Override
     public String getDescription() {
-        return "Reinicia los regalos (borra la base de datos)";
+        return "Reinicia los regalos borrando la base de datos";
     }
 
     @Override
