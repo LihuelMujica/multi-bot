@@ -38,7 +38,12 @@ public class ModalListener extends ListenerAdapter {
                 event.getHook().sendMessageEmbeds(AlertEmbed.createError(e.getMessage())).queue();
                 return;
             }
-            event.getHook().sendMessageEmbeds(AlertEmbed.createSuccess("Tu regalo ha sido enviado correctamente. A continuación te mostramos cómo se verá. Puedes modificarlo volviendolo a enviar"), InvisibleFriendEmbed.giftEmbed(title, body, imgURL)).queue();
+            try {
+                event.getHook().sendMessageEmbeds(AlertEmbed.createSuccess("Tu regalo ha sido enviado correctamente. A continuación te mostramos cómo se verá. Puedes modificarlo volviendolo a enviar"), InvisibleFriendEmbed.giftEmbed(title, body, imgURL)).queue();
+            }
+            catch (Exception e) {
+                event.getHook().sendMessageEmbeds(AlertEmbed.createError("Ha ocurrido un error al enviar el regalo. Por favor, inténtalo de nuevo"), AlertEmbed.createError("Es probable que la imagen que pusiste no sea válida. Dejá el campo vacío o poné una url a una imagen válida")).queue();
+            }
         }
     }
 }
