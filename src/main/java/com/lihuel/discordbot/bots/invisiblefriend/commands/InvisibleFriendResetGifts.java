@@ -19,7 +19,7 @@ public class InvisibleFriendResetGifts implements Command {
 
     @Override
     public String getName() {
-        return "amigo-invisible-reiniciar-regalos";
+        return "amigo-invisible-reset-gifts";
     }
 
     @Override
