@@ -71,6 +71,7 @@ public class MusicNotifications {
 
     @EventListener
     public void onCustomError(CustomError event) {
+        System.out.println(event.getError());
         event.getEvent().replyEmbeds(AlertEmbed.createError(event.getError())).queue();
     }
 

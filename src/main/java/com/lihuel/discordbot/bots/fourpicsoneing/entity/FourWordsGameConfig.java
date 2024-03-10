@@ -1,7 +1,6 @@
 package com.lihuel.discordbot.bots.fourpicsoneing.entity;
 
 import com.lihuel.discordbot.bots.fourpicsoneing.events.LeaderChangeEvent;
-import com.sedmelluq.lava.extensions.youtuberotator.tools.Tuple;
 import lombok.Data;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.ApplicationContext;
